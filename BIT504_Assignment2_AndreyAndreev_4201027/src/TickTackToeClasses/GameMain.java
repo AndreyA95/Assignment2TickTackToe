@@ -37,7 +37,9 @@ public class GameMain {
 				if(winner == Player.X) {
 					System.out.println("Player X wins!");
 				}
-				//display result if O wins & draw
+				if(winner == Player.O) {
+					System.out.println("Player O wins!");
+				}
 			}
 			
 			//switch turn to next player
