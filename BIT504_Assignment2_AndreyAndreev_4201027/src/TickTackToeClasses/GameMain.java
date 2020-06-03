@@ -10,11 +10,10 @@ public class GameMain {
 	private Player currentPlayer;
 	
 	public GameMain() {
-		//Game constructor	
-		//grid = new Grid();			//Create a new instance of the Grid class and required methods
-		grid = new Grid(); //ERROR?	
+		//Game constructor				
+		grid = new Grid(); 			//Create a new instance of the Grid class and required methods
 		gameOver = false;			//Reset the game variables to their default				
-		winner = null;		
+		winner = null;				//Resets winner variable
 		currentPlayer = Player.X;	//Assign the default values for currentPlayer (player.X)		
 		play();						//Begin playing the game
 		
@@ -84,14 +83,13 @@ public class GameMain {
 			winner=currentPlayer;
 			System.out.println("Congratulations " + winner + ". You are the winner!");
 			
-		} else if(grid.isDraw()) {/*Could be incorrect!!!!!!*/
+		} else if(grid.isDraw()) {
 			gameOver = true;
 			System.out.println("The game is a draw.");
-			//TODO: Set gameOver and winner appropriately
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) { //Sets player on a loop that launches game and exits when complete
 		char ans;
 		Scanner playAgain = new Scanner(System.in);
 		while (true) {

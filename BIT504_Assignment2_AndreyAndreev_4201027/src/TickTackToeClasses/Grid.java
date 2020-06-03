@@ -59,13 +59,12 @@ public class Grid {
 	public void display() {
 		for (int row=0; row < ROWS; ++row) {
 			for(int col= 0; col < COLUMNS; ++col) {
-				//Draw the content of the box
 				board[row][col].display();
 				//draw vertical lines
 				if (col< COLUMNS -1) System.out.print("|"); //prints vertical line
 			}
 			System.out.println();
-			if (row<ROWS -1) {//draw horizontal lines
+			if (row<ROWS -1) {
 				System.out.println("------------"); //Draws horizontal line
 			}
 		}
