@@ -18,9 +18,19 @@ public class Box {
 		content = Player.Empty;
 	}
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	public void display() {
+		//TODO: Print X and O for players
+		//can use an if-else or switch statement
+		switch(content) {
+		case X:{
+			System.out.print("X");
+		}
+		case O:{
+			System.out.print("O");
+		}
+		/*case Empty:{
+			
+		}*/
+		}
 	}
-
 }
