@@ -10,23 +10,17 @@ public class GameMain {
 	private Player currentPlayer;
 	
 	public GameMain() {
-		//Game constructor
-		//Create the grid
-		
-		//Create a new instance of the Grid class and required methods
-		grid = new Grid();
-		//Reset the game variables to their default
-		gameOver = false;
-		//Assign the default values for currentPlayer (player.X)		
-		winner = null;
-		//Begin playing the game
-		currentPlayer = Player.X;
-		
-		//Call the "play()" method/*/*/*/*/*/*
+		//Game constructor	
+		//grid = new Grid();			//Create a new instance of the Grid class and required methods
+		grid = new Grid(); //ERROR?	
+		gameOver = false;			//Reset the game variables to their default				
+		winner = null;		
+		currentPlayer = Player.X;	//Assign the default values for currentPlayer (player.X)		
+		play();						//Begin playing the game
 		
 	}
 	
-	public void play() {
+	public void play() { //controls game and rotates players
 		do {
 			playerMove(currentPlayer);		//HAve the player perform their move
 			grid.display();					//Display the current game board
@@ -40,7 +34,9 @@ public class GameMain {
 				if(winner == Player.O) {
 					System.out.println("Player O wins!");
 				}
-				
+				else {
+					System.out.println("Match is a draw");
+				}
 			}
 			
 			//switch turn to next player
@@ -49,15 +45,15 @@ public class GameMain {
 			}else {
 				currentPlayer = Player.X;
 			}
-		} while (!gameOver);
+		} while (!gameOver); //repeat until game over
 	}
 	
-	public void playerMove(Player turnPlayer) {
+	public void playerMove(Player turnPlayer) {//Handles the player making moves
 		boolean validInput=false;
 		
 		do {
 			
-			if(turnPlayer == Player.X) {
+			if(turnPlayer == Player.X) {//gives instructions to user
 				System.out.print("Player 'X', enter your move (row [1-3] column [1-3]): ");
 				}else if (turnPlayer == Player.O){
 					System.out.print("Player 'O', enter your move (row [1-3] column [1-3]): ");
@@ -76,61 +72,40 @@ public class GameMain {
 				grid.currentCol=col;
 				validInput = true;
 			} else {
-				//TODO: Display an error message that the move is invalid.
-				System.out.println("Invalid entry. Please try again with O or X");
+				
+				System.out.println("Invalid entry. Please try again...");
 			}
 		} while (!validInput);
 	}
-	
+	//check if the game has ended
 	public void checkForWinner(Player turnPlayer) { // method to check if the game has ended
 		if(grid.hasWon(turnPlayer)) {
 			gameOver = true;
 			winner=currentPlayer;
 			System.out.println("Congratulations " + winner + ". You are the winner!");
-			//TODO: Set gameOver and winner appropriately
-		} else if(grid.isDraw(currentPlayer)) {/*Could be incorrect!!!!!!*/
 			
-			System.out.println("The game is a draw. Nobody wins.");
+		} else if(grid.isDraw()) {/*Could be incorrect!!!!!!*/
+			gameOver = true;
+			System.out.println("The game is a draw.");
 			//TODO: Set gameOver and winner appropriately
 		}
 	}
 
 	public static void main(String[] args) {
-		int option;
-		while(true) {
-			System.out.println("Please select one of the below options");
-			System.out.println("1. Play Tick Tack Toe");
-			System.out.println("2. Exit Program.");
-			option = scanner.nextInt();
-			switch(option) {
-			case 1:{
-				
+		char ans;
+		Scanner playAgain = new Scanner(System.in);
+		while (true) {
+			new GameMain();
+			System.out.println("Play again? Press Y to play again or N to exit");
+			ans = playAgain.next().charAt(0);
+			if (ans == 'Y'||ans == 'y') {
 				continue;
 			}
-			case 2:{
+			else if (ans == 'N'||ans == 'n') {
 				System.out.println("You have successfully exited the program.");
+				System.exit(0);
 				break;
 			}
-			default:{
-				System.out.println("Invalid input. Please try again.");
-				continue;
-			}
-			}
-			break;
 		}
 	}
-		//main method
-		// TODO Add a loop to restart the game once it has finished
-		// TODO: Then update the loop, ask player of they wish to play again or not. If not exit program.
-	boolean playAgain = true;{
-	do {
-		new GameMain();
-		String input = scanner.next();
-		if(input == "N")/*condition to make playAgain = false to terminate the loop)*/ {
-			playAgain=false;
-			System.out.println("Thank you for playing.");
-		}
-		}
-	while(playAgain);
-	} 
 }

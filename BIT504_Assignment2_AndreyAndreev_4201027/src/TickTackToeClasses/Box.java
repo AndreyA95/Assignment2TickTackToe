@@ -2,35 +2,38 @@ package TickTackToeClasses;
 
 public class Box {
 	
-	Player content; //The move thi box holds(Empty, x or o_
-	int row, col; 	//row and column of this box(not currently used butpossibly useful in the future update
+	Player content; //The move this box holds(Empty, x or o)
+	int row, col; 	//row and column of this box
 	
 	//Constructor
 	
 	public Box(int row, int col) {
-		this.row = 3;
-		this.col = 3;
-		//TODO: Initialze the variables row, col and content
+		this.row = row;
+		this.col = col;
+		this.content = Player.Empty;
 	}
 	
 	public void clear() {
-		//TODO: Set the value of content to EMPTY(Remember this is an enum)
 		content = Player.Empty;
 	}
+
 
 	public void display() {
 		//TODO: Print X and O for players
 		//can use an if-else or switch statement
 		switch(content) {
 		case X:{
-			System.out.print("X");
+			System.out.print(" X ");
+			break;
 		}
 		case O:{
-			System.out.print("O");
+			System.out.print(" O ");
+			break;
 		}
-		/*case Empty:{
-			
-		}*/
+		case Empty:{
+			System.out.print("   ");
+			break;
+		}
 		}
 	}
 }
